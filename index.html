@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio">
     <title>Devschnee | Archive</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <!-- header -->
-    <header>
+    <header class="site=header">
         <a href="#">Archive</a>
         <nav aria-label="main menu">
             <a href="#works">WORKS</a>
@@ -19,32 +20,54 @@
     </header>
     <!-- body -->
     <main>
-        <section id="top">
-            <h1>DEV SCHNEE</h1>
-            <p>Web, games &amp; interactive experiences.</p>
-            <a href="#works">VIEW WORK</a>
+        <section class="hero" id="top">
+            <img src="src/898a5ad2-950c-4976-aafb-7876643cb460.png" alt="Snowy mountain">
+            <div class="hero-content">
+                <h1 id="hero-title">
+                    <span>DEV</span>
+                    <em>SCHNEE</em>
+                </h1>
+                <p class="hero-description">
+                    Web, games &amp; interactive <br />
+                    experiences.
+                </p>
+
+                <a class="hero-link" href="#works">
+                    VIEW WORK
+                    <span aria-hidden="true">↗</span>
+                </a>
+            </div>
+            <p class="hero-caption">PORTFOLIO | 2026</p>
         </section>
 
-        <section id="works">
-            <h2>SELECTED WORKS</h2>
+        <section class="works" id="works" aria-labelledby="works-title">
+            <h2 id="works=title">SELECTED <em>WORKS</em></h2>
 
-            <article id="moonlit-rush">
+            <nav class="project-nav" aria-label="project-index">
+                <a href="#moonlit-rush">Moonlit Rush</a>
+                <a href="#cocodoogy">Cocodoogy</a>
+                <a href="#dont-nudge-me">Don't Nudge Me</a>
+                <a href="#steam-reviews">Steam Review Analyzer</a>
+                <a href="#emoticon-resizer">Emoticon Resizer</a>
+            </nav>
+
+            <article class="project" id="moonlit-rush">
                 <h3>Moonlit Rush</h3>
             </article>
 
-            <article id="cocodoogy">
+            <article class="project" id="cocodoogy">
                 <h3>Cocodoogy</h3>
             </article>
 
-            <article id="dont-nudge-me">
+            <article class="project" id="dont-nudge-me">
                 <h3>Don't Nudge Me</h3>
             </article>
 
-            <article id="steam-reviews">
+            <article class="project" id="steam-reviews">
                 <h3>Steam Review Analyzer</h3>
             </article>
 
-            <article id="emoticon-resizer">
+            <article class="project" id="emoticon-resizer">
                 <h3>Emoticon Resizer</h3>
             </article>
         </section>
@@ -52,14 +75,6 @@
         <section id="about">
             <h2>ABOUT ME</h2>
             <p>눈을 좋아하는 개발자, Devschnee입니다.</p>
-        </section>
-
-        <section id="contact">
-            <h2>CONTACT</h2>
-            <a href="">EMAIL</a>
-            <a href="">TWITTER</a>
-            <a href="">GITHUB</a>
-            <a href=""> INSTAGRAM</a>
         </section>
     </main>
 

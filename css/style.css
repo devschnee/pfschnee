@@ -12,6 +12,11 @@
     box-sizing: border-box;
 }
 
+/* 페이지 안의 링크로 이동할 때 부드럽게 스크롤 */
+html {
+    scroll-behavior: smooth;
+}
+
 /* 페이지 기본 설정 */
 body {
     margin: 0;
@@ -26,62 +31,318 @@ a {
     text-decoration: none;
 }
 
-/* 헤더 */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 24px;
-
-    padding: 24px 48px;
-    background-color: var(--color-dark);
-    color: var(--color-snow);
-}
-
-/* 헤더의 로고 링크 */
-header>a {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 26px;
-}
-
-/* 헤더 메뉴 */
-header nav {
-    display: flex;
-    gap: 32px;
-}
-
-header nav a {
-    padding: 8px 0;
-    font-size: 12px;
-    letter-spacing: 0.12em;
-}
-
-header nav a:hover {
-    color: var(--color-ice);
-}
-
 /* 키보드로 링크를 선택했을 때 */
 a:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 5px;
 }
 
-/* 화면 너비가 600px 이하일 때 */
+/* 헤더 */
+.site-header {
+    /* 첫 화면 배경 위의 상단에 배치 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+
+    width: 100%;
+    padding: 24px 48px;
+    color: var(--color-snow);
+}
+
+/* 헤더의 직접적인 자식인 로고 링크 */
+.site-header>a {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 26px;
+}
+
+/* 헤더 메뉴를 가로로 배치 */
+.site-header nav {
+    display: flex;
+    gap: 32px;
+}
+
+.site-header nav a {
+    padding: 8px 0;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+}
+
+/* 헤더 메뉴에 마우스를 올렸을 때 */
+.site-header nav a:hover {
+    color: var(--color-ice);
+}
+
+/* 첫 화면 */
+.hero {
+    /* 내부의 absolute 요소가 이 영역을 기준으로 배치 */
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    /* 최소 높이를 작은 뷰포트 높이만큼 확보 */
+    min-height: 100svh;
+    padding: 140px 48px 100px;
+
+    /* 이미지 위에 반투명 그라데이션을 겹쳐 글자의 가독성 확보 */
+    background-color: var(--color-dark);
+    background-image:
+        linear-gradient(to right,
+            rgba(16, 24, 32, 0.3),
+            rgba(16, 24, 32, 0)),
+        url("../src/898a5ad2-950c-4976-aafb-7876643cb460.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: var(--color-snow);
+}
+
+/* 첫 화면의 대표 제목 */
+.hero h1 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+
+    /* 화면 너비에 따라 조절하되 100px~220px 범위로 제한 */
+    font-size: clamp(100px, 15vw, 220px);
+    font-weight: 400;
+    line-height: 0.85;
+    letter-spacing: -0.06em;
+}
+
+/* DEV와 SCHNEE를 각각 한 줄씩 배치 */
+.hero h1 span,
+.hero h1 em {
+    display: block;
+}
+
+.hero h1 em {
+    font-weight: 400;
+}
+
+/* 대표 제목 아래의 소개 문구 */
+.hero-description {
+    margin: 32px 0 24px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(22px, 2vw, 30px);
+    line-height: 1.3;
+}
+
+/* 작업물 영역으로 이동하는 링크 */
+.hero-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 28px;
+
+    padding: 10px 0;
+    border-bottom: 1px solid var(--color-ice);
+
+    font-size: 11px;
+    letter-spacing: 0.16em;
+}
+
+/* 링크 옆의 화살표 */
+.hero-link span {
+    font-size: 20px;
+    letter-spacing: normal;
+}
+
+.hero-link:hover {
+    color: var(--color-ice);
+}
+
+/* 첫 화면 오른쪽 아래의 연도 표시 */
+.hero-caption {
+    position: absolute;
+    right: 48px;
+    bottom: 28px;
+
+    margin: 0;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+}
+
+/* 작업물 영역의 위아래와 좌우 여백 */
+.works {
+    padding: 64px 48px;
+}
+
+/* 작업물 영역의 제목과 장식 선을 가로로 배치 */
+.works>h2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin: 0 0 24px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(28px, 4vw, 56px);
+    font-weight: 400;
+    letter-spacing: -0.04em;
+}
+
+/* 제목 오른쪽의 장식 선: 남은 너비를 채움 */
+.works>h2::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    margin-left: 24px;
+    background-color: var(--color-line);
+}
+
+/* 프로젝트 목차 */
+.project-nav {
+    /* 화면 상단에 닿으면 작업물 영역 안에서 붙어 있음 */
+    position: sticky;
+    top: 0;
+    z-index: 5;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+
+    /* 목차가 화면보다 길어지면 가로 스크롤 허용 */
+    overflow-x: auto;
+
+    border-bottom: 1px solid var(--color-line);
+    background-color: var(--color-snow);
+}
+
+/* 목차 링크가 좁은 화면에서도 억지로 줄어들지 않도록 설정 */
+.project-nav a {
+    position: relative;
+    flex-shrink: 0;
+
+    padding: 22px 4px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 18px;
+    white-space: nowrap;
+}
+
+/* 목차 밑줄: 처음에는 가로 크기를 0으로 줄여 숨김 */
+.project-nav a::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    height: 2px;
+    background-color: var(--color-accent);
+    transform: scaleX(0);
+    transition: transform 0.2s ease;
+}
+
+/* 마우스를 올리거나 키보드로 선택하면 밑줄 표시 */
+.project-nav a:hover::after,
+.project-nav a:focus-visible::after {
+    transform: scaleX(1);
+}
+
+/* 개별 프로젝트의 여백과 구분선 */
+.project {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--color-line);
+
+    /* 목차로 이동했을 때 제목이 붙어 있는 목차에 가리지 않도록 여유 확보 */
+    scroll-margin-top: 90px;
+}
+
+/* 개별 프로젝트 제목 */
+.project h3 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(32px, 4.5vw, 64px);
+    font-weight: 400;
+    letter-spacing: -0.04em;
+}
+
+/* 마지막 프로젝트 아래의 구분선 제거 */
+.project:last-child {
+    border-bottom: none;
+}
+
+/* 모바일 */
 @media (max-width: 600px) {
-    header {
+    .site-header {
         gap: 16px;
         padding: 20px;
     }
 
-    header>a {
+    .site-header>a {
         font-size: 22px;
     }
 
-    header nav {
+    .site-header nav {
         gap: 16px;
     }
 
-    header nav a {
+    .site-header nav a {
         font-size: 10px;
+    }
+
+    .hero {
+        align-items: flex-start;
+        padding: 150px 20px 100px;
+        background-position: 60% center;
+    }
+
+    .hero h1 {
+        font-size: 22vw;
+    }
+
+    .hero-description {
+        margin-top: 24px;
+        font-size: 22px;
+    }
+
+    .hero-caption {
+        right: 20px;
+        bottom: 24px;
+        font-size: 9px;
+    }
+
+    /* 작은 화면에 맞춰 작업물 영역의 여백과 제목 크기 축소 */
+    .works {
+        padding: 36px 20px;
+    }
+
+    .works>h2 {
+        gap: 8px;
+        font-size: clamp(23px, 6.4vw, 32px);
+    }
+
+    .works>h2::after {
+        margin-left: 8px;
+    }
+
+    /* 목차의 간격과 글자 크기 축소 */
+    .project-nav {
+        gap: 24px;
+    }
+
+    .project-nav a {
+        padding: 20px 2px;
+        font-size: 16px;
+    }
+
+    .project {
+        padding: 36px 0;
+    }
+}
+
+/* 기기에서 움직임 줄이기를 설정한 사용자를 위한 처리 */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .project-nav a::after {
+        transition: none;
     }
 }
