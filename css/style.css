@@ -97,6 +97,8 @@ a:focus-visible {
             rgba(16, 24, 32, 0.3),
             rgba(16, 24, 32, 0)),
         url("../src/898a5ad2-950c-4976-aafb-7876643cb460.png");
+
+    /* 영역을 채우고, 넘치는 이미지 부분은 잘라냄 */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
