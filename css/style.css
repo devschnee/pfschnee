@@ -170,8 +170,13 @@ a:focus-visible {
     letter-spacing: 0.16em;
 }
 
-/* 작업물 영역의 위아래와 좌우 여백 */
+/* 작업물 영역의 최대 너비와 여백 */
 .works {
+    /* 큰 모니터에서도 콘텐츠가 지나치게 넓어지지 않도록 제한 */
+    max-width: 1440px;
+
+    /* 좌우 바깥 여백을 자동으로 나눠 가운데 배치 */
+    margin: 0 auto;
     padding: 64px 48px;
 }
 
@@ -269,8 +274,136 @@ a:focus-visible {
     border-bottom: none;
 }
 
+/* 프로젝트 상단: 번호 / 제목 / 분류의 3열 구성 */
+.project-heading {
+    display: grid;
+
+    /* 번호는 40px, 제목은 남은 공간, 분류는 내용에 맞는 너비 */
+    grid-template-columns: 40px minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 24px;
+
+    margin-bottom: 24px;
+}
+
+/* 프로젝트 번호 */
+.project-number {
+    color: var(--color-accent);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 14px;
+}
+
+/*프로젝트 설명*/
+.project-body {
+    display: grid;
+    /*두 열의 너비 비율. 2fr 1fr은 간격을 제외한 공간을 2:1로 나눔*/
+    grid-template-columns: 2fr 1fr;
+    gap: 32px;
+}
+
+/* 프로젝트 분류 */
+.project-category {
+    margin: 0;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+}
+
+/* 이미지 주변의 얇은 모서리 프레임 */
+.project-frame {
+    /* 모서리 장식이 이 요소를 기준으로 배치 */
+    position: relative;
+
+    /* figure의 브라우저 기본 여백 제거 */
+    margin: 0;
+    padding: 8px;
+}
+
+/* 왼쪽 위와 오른쪽 아래 모서리의 공통 설정 */
+.project-frame::before,
+.project-frame::after {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 24px;
+
+    border-color: var(--color-line);
+    border-style: solid;
+
+    /* 장식이 이미지 위의 마우스 동작을 막지 않도록 설정 */
+    pointer-events: none;
+}
+
+/* 왼쪽 위 모서리 */
+.project-frame::before {
+    top: 0;
+    left: 0;
+    border-width: 1px 0 0 1px;
+}
+
+/* 오른쪽 아래 모서리 */
+.project-frame::after {
+    right: 0;
+    bottom: 0;
+    border-width: 0 1px 1px 0;
+}
+
+/* 원본 이미지 비율을 유지하면서 프레임 너비에 맞춤 */
+.project-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* 사용 기술 */
+.project-tech {
+    margin: 5px 0 0;
+    padding-left: 8px;
+    color: var(--color-accent);
+    font-size: 11px;
+}
+
+/* 이미지 아래: 설명과 기술 정보를 양쪽에 배치 */
+.project-caption {
+    display: block;
+    padding: 16px 8px 0;
+}
+
+.project-caption>h4:first-child {
+    margin: 0 0 8px;
+    font-size: 18px;
+}
+
+.project-caption h4 {
+    margin: 0 0 8px;
+    font-size: 16px;
+}
+
+/* 프로젝트 설명 */
+.project-description {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.8;
+    list-style: none;
+    padding: 0;
+}
+
+.project-description li::before {
+    content: "- ";
+}
+
+.project-description span {
+    display: block;
+    padding-left: 7px;
+}
+
+.project-caption p {
+    margin: 0 0 24px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
 /* 모바일 */
-@media (max-width: 600px) {
+@media (max-width: 900px) {
     .site-header {
         gap: 16px;
         padding: 20px;
@@ -335,6 +468,40 @@ a:focus-visible {
 
     .project {
         padding: 36px 0;
+    }
+
+    /* 모바일에서는 번호와 제목을 첫 줄에 배치 */
+    .project-heading {
+        grid-template-columns: 24px minmax(0, 1fr);
+        gap: 8px 12px;
+        margin-bottom: 16px;
+    }
+
+    /* 분류는 두 번째 열의 다음 줄로 이동 */
+    .project-category {
+        grid-column: 2;
+        font-size: 9px;
+    }
+
+    .project-body {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+    }
+
+    /* 작은 화면에서는 모서리 장식과 프레임 여백 축소 */
+    .project-frame {
+        padding: 6px;
+    }
+
+    .project-frame::before,
+    .project-frame::after {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* 설명과 기술 정보를 한 열로 배치 */
+    .project-caption {
+        padding: 12px 6px 0;
     }
 }
 
