@@ -7,6 +7,7 @@
     <meta name="description" content="Portfolio">
     <title>Devschnee | Archive</title>
     <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/main.js" defer></script>
 </head>
 
 <body>
@@ -42,7 +43,7 @@
                 </a>
             </div>
 
-            <p class="hero-caption">PORTFOLIO | 2026</p>
+            <p class="hero-caption">PORTFOLIO</p>
         </section>
 
         <section class="works" id="works" aria-labelledby="works-title">
@@ -217,18 +218,61 @@
             </article>
         </section>
 
-        <section id="about">
-            <h2>ABOUT ME</h2>
-            <p>눈을 좋아하는 개발자, Devschnee입니다.</p>
+        <section class="about" id="about" aria-labelledby="about-title">
+            <h2 id="about-title">ABOUT ME</h2>
+            <p>모호한 요구사항도 명확한 결과물로 만드는, Devschnee입니다.</p>
+            <p>저는 무엇이든 만드는 걸 좋아합니다. 머릿속 아이디어가 실제로 돌아가고, 불편했던 일이 해결되고, 원하는 모습으로 다듬어지는 과정이 재미있습니다. 이미지 크기를 일일이 바꾸는 게 불편해서
+                이모티콘 리사이저를 만들었고, 머릿속 아이디어는 게임으로 만들었습니다. 출시한 게임에 써먹고 싶어서 리뷰 분석 웹앱까지 만들었습니다.</p>
+            <p>작업할 때는 전체 구조를 먼저 잡고 핵심 기능부터 구현한 뒤 UX를 다듬습니다. 세부를 놓치지 않되 계획한 범위를 먼저 끝내고, 추가 기능과 개선점은 그다음에 검토합니다. 팀 프로젝트에서는
+                팀장이나 부팀장을 맡아 협업해 왔고, 개인 프로젝트로는 모바일 게임 두 종을 만들어 출시했습니다.</p>
         </section>
     </main>
 
     <!-- footer -->
-    <footer id="contact">
-        <h2>CONTACT</h2>
-        <p>@ 2026 DEV SCHNEE. ALL RIGHTS RESERVED.</p>
-        <a href="#top">BACK TO TOP</a>
+    <footer>
+        <div class="contact" id="contact" aria-labelledby="contact-title">
+            <h2 id="contact-title">CONTACT</h2>
+            <div id="contact-body">
+                <button class="contact-link" type="button" id="email-open">E-mail</button>
+                <a href="https://github.com/devschnee" class="contact-link" target="_blank"
+                    rel="noopener noreferrer">GitHub</a>
+            </div>
+            <p>ⓒ 2026 DEV SCHNEE. ALL RIGHTS RESERVED.</p>
+            <a href="#top">BACK TO TOP</a>
+        </div>
     </footer>
+
+    <div class="email-panel" id="email-panel" hidden>
+        <div class="email-panel-header">
+            <h3>메일 보내기</h3>
+            <button type="button" id="email-toggle" aria-label="minimize mail writing">
+                <span class="email-icon icon-minimize" aria-hidden="true">−</span>
+                <span class="email-icon icon-expand" aria-hidden="true">⤢</span>
+            </button>
+            <button type="button" id="email-close" aria-label="close mail writing">🗙</button>
+
+        </div>
+        <div class="email-panel-body">
+            <div class="email-panel-content">
+                <form id="email-form">
+                    <label for="sender-name">보내는 사람 이름</label>
+                    <input type="text" id="sender-name" name="name" placeholder="보내는 사람 이름" required>
+
+                    <label for="sender-email">보내는 사람 이메일</label>
+                    <input type="email" id="sender-email" name="email" placeholder="보내는 사람 이메일" required>
+
+                    <label for="email-title">메일 제목</label>
+                    <input type="text" id="email-title" name="title" placeholder="메일 제목" required>
+
+                    <label for="email-message">메일 내용</label>
+                    <textarea id="email-message" name="message" rows="6" required placeholder="메일 내용"></textarea>
+
+                    <button type="submit" id="email-send" aria-label="send mail">보내기</button>
+                    <p id="email-status" aria-live="polite"></p>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
