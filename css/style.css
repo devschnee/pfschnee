@@ -273,6 +273,10 @@ a:focus-visible {
     position: relative;
 }
 
+.index-nav a.mobile-only {
+    display: none;
+}
+
 .index-nav a:hover {
     color: var(--color-ice);
 }
@@ -864,6 +868,14 @@ footer {
         padding: 12px 8px;
         font-size: 11px;
         color: var(--color-snow);
+    }
+
+    .index-nav .pc-contact-label {
+        display: none;
+    }
+
+    .index-nav a.mobile-only {
+        display: flex;
     }
 
     .index-nav a:hover {

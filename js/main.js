@@ -123,20 +123,28 @@ updateEmailViewport();
 
 
 function updateActiveIndex() {
+    const isMobile = window.matchMedia("(max-width: 900px)").matches;
+
+    const trackedLinks = [...sectionLinks].filter((link) =>
+        isMobile || !link.classList.contains("mobile-only")
+    );
+
     let activeHref = "";
 
-    sectionLinks.forEach((link) => {
+    trackedLinks.forEach((link) => {
         const href = link.getAttribute("href");
         const section = document.querySelector(href);
 
-        if (section && section.getBoundingClientRect().top <= window.innerHeight * 0.35) {
+        const triggerPoint =
+            window.innerHeight * (href === "#contact" ? 0.8 : 0.35);
+
+        if (section && section.getBoundingClientRect().top <= triggerPoint) {
             activeHref = href;
         }
     });
 
-    // 페이지 끝에서는 마지막 항목을 활성화
     if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
-        activeHref = sectionLinks[sectionLinks.length - 1]?.getAttribute("href") || "";
+        activeHref = trackedLinks[trackedLinks.length - 1]?.getAttribute("href") || "";
     }
 
     sectionLinks.forEach((link) => {
