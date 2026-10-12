@@ -6,6 +6,22 @@ const toggleButton = document.getElementById('email-toggle');
 const emailForm = document.querySelector("#email-form");
 const sendButton = document.getElementById('email-send');
 let turnstileWidgetId;
+const revealProjects = document.querySelectorAll(".t-stagger");
+
+const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+        entry.target.classList.toggle("is-shown", entry.isIntersecting);
+    });
+}, {
+    threshold: 0,
+    rootMargin: "0px 0px -80px 0px"
+});
+
+revealProjects.forEach((project) => {
+    project.classList.add("is-ready");
+    revealObserver.observe(project);
+});
+
 
 openButton.addEventListener("click", () => {
     emailPanel.classList.remove("minimized");
