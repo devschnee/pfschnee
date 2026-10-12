@@ -23,7 +23,6 @@ openButton.addEventListener("click", () => {
                 console.log('CAPTCHA 통과됨:', token);
             },
             'expired-callback': function () {
-                console.error('Turnstile 오류 코드:', errorCode);
                 console.log('CAPTCHA 만료됨');
                 turnstile.reset('#email-turnstile');
             }
@@ -80,5 +79,40 @@ emailForm.addEventListener("submit", async (event) => {
             turnstile.reset(turnstileWidgetId);
         }
     }
-
 });
+const sectionLinks = document.querySelectorAll(
+    '.index-nav a[href^="#"]:not([href="#top"])'
+);
+
+function updateActiveIndex() {
+    let activeHref = "";
+
+    sectionLinks.forEach((link) => {
+        const href = link.getAttribute("href");
+        const section = document.querySelector(href);
+
+        if (section && section.getBoundingClientRect().top <= window.innerHeight * 0.35) {
+            activeHref = href;
+        }
+    });
+
+    // 페이지 끝에서는 마지막 항목을 활성화
+    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+        activeHref = sectionLinks[sectionLinks.length - 1]?.getAttribute("href") || "";
+    }
+
+    sectionLinks.forEach((link) => {
+        const isActive = link.getAttribute("href") === activeHref;
+        link.classList.toggle("is-active", isActive);
+
+        if (isActive) {
+            link.setAttribute("aria-current", "location");
+        } else {
+            link.removeAttribute("aria-current");
+        }
+    });
+}
+
+window.addEventListener("scroll", updateActiveIndex, { passive: true });
+window.addEventListener("resize", updateActiveIndex);
+updateActiveIndex();

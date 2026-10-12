@@ -236,11 +236,29 @@ a:focus-visible {
     display: block;
     padding-left: 22px;
     color: var(--color-dark);
+    position: relative;
 }
 
 .index-nav a:hover {
     color: var(--color-ice);
 }
+
+.index-nav a.is-active {
+    color: var(--color-accent);
+    font-weight: 700;
+}
+
+.index-nav a.is-active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 12px;
+    height: 1px;
+    background-color: currentColor;
+    transform: translateY(-50%);
+}
+
 
 /* 작업물 영역의 최대 너비와 여백 */
 .works {
