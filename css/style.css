@@ -5,6 +5,12 @@
     --color-snow: #F2F3EF;
     --color-ice: #B8C9D1;
     --color-line: #D6DDE0;
+
+    --learn-shift: 2px;
+    --learn-spread: 8deg;
+    --learn-in: 350ms;
+    --learn-out: 350ms;
+    --learn-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* 요소 크기에 테두리와 안쪽 여백을 포함 */
@@ -35,6 +41,46 @@ a {
 a:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 5px;
+}
+
+.t-learn-chevron {
+    display: inline-flex;
+    transform: translateX(0);
+    transition: transform var(--learn-out) var(--learn-ease);
+}
+
+.t-learn-arm {
+    transform-box: view-box;
+    transform-origin: 10px 8px;
+    vector-effect: non-scaling-stroke;
+    transition: transform var(--learn-out) var(--learn-ease);
+}
+
+.t-learn:hover .t-learn-chevron {
+    transform: translateX(var(--learn-shift));
+    transition-duration: var(--learn-in);
+}
+
+.t-learn:hover .t-learn-arm {
+    transition-duration: var(--learn-in);
+}
+
+.t-learn:hover .t-learn-arm-top {
+    transform: rotate(var(--learn-spread));
+}
+
+.t-learn:hover .t-learn-arm-bot {
+    transform: rotate(calc(var(--learn-spread) * -1));
+}
+
+.t-learn-down {
+    display: inline-flex;
+    transform: rotate(90deg);
+}
+
+.t-learn-up {
+    display: inline-flex;
+    transform: rotate(-90deg);
 }
 
 /* 헤더 */
@@ -142,7 +188,7 @@ a:focus-visible {
     align-items: center;
     gap: 28px;
 
-    padding: 10px 0;
+    padding: 4px 0;
     border-bottom: 1px solid var(--color-ice);
 
     font-size: 11px;
@@ -151,7 +197,8 @@ a:focus-visible {
 
 /* 링크 옆의 화살표 */
 .hero-link span {
-    font-size: 20px;
+    font-size: 14px;
+    padding-bottom: 3px;
     letter-spacing: normal;
 }
 
@@ -456,6 +503,11 @@ a:focus-visible {
     margin: 0 auto;
     padding: 64px 48px;
     border-top: 1px solid var(--color-dark);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 48px;
+    align-items: start;
+    line-height: 1.8;
 }
 
 .about>h2 {
@@ -466,10 +518,17 @@ a:focus-visible {
     letter-spacing: -0.04em;
 }
 
-.about>p {
+
+.about-content>p {
     margin: 0 0 20px;
     font-size: 16px;
     line-height: 1.8;
+}
+
+.about-content>p:first-child {
+    font-size: clamp(22px, 2vw, 30px);
+    line-height: 1.5;
+    margin-bottom: 28px;
 }
 
 footer {
@@ -479,13 +538,9 @@ footer {
 
 #contact-body {
     display: flex;
-    gap: 24px;
-    border-bottom: 1px solid var(--color-ice);
-}
-
-#contact-body button {
-    background: transparent;
-    border: 0;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin-bottom: 48px;
 }
 
 .contact-link {
@@ -493,6 +548,16 @@ footer {
     cursor: pointer;
     font: inherit;
     color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 160px;
+    padding: 12px 0;
+    font-size: 18px;
+    border-bottom: 1px solid var(--color-accent);
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--color-accent);
 }
 
 .contact {
@@ -501,12 +566,11 @@ footer {
     padding: 64px 48px;
 }
 
-.contact>h2 {
-    margin: 0 0 24px;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(28px, 4vw, 56px);
-    font-weight: 400;
-    letter-spacing: -0.02em;
+.contact>p {
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.6;
+    color: var(--color-ice);
 }
 
 /*이메일 패널*/
@@ -695,6 +759,12 @@ footer {
 
 /* 모바일 */
 @media (max-width: 900px) {
+
+    .t-learn-chevron,
+    .t-learn-arm {
+        transition: none;
+    }
+
     .site-header {
         gap: 16px;
         padding: 20px;
@@ -797,10 +867,17 @@ footer {
 
     .about {
         padding: 36px 20px;
+        grid-template-columns: 1fr;
+        gap: 24px;
     }
 
     .contact {
         padding: 36px 20px;
+    }
+
+    #contact-body {
+        grid-template-columns: 1fr;
+        gap: 0;
     }
 
     .email-panel {
