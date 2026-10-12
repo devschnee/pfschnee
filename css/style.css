@@ -800,6 +800,14 @@ footer {
     cursor: pointer;
 }
 
+.footer-top {
+    display: none;
+}
+
+.index-nav[hidden] {
+    display: none;
+}
+
 
 /* 모바일 */
 @media (max-width: 900px) {
@@ -815,6 +823,39 @@ footer {
         opacity: 1;
         transform: none;
         filter: none;
+    }
+
+    .index-nav {
+        left: 16px;
+        right: 16px;
+        bottom: 12px;
+        z-index: 10;
+
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+
+        padding: 4px 8px;
+        background-color: var(--color-snow);
+        border: 1px solid var(--color-line);
+    }
+
+    .index-nav a {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 12px 8px;
+        font-size: 11px;
+    }
+
+    .index-nav a.is-active::before {
+        left: 8px;
+        right: 8px;
+        top: auto;
+        bottom: 4px;
+        width: auto;
+        transform: none;
     }
 
     .site-header {
@@ -978,6 +1019,18 @@ footer {
 
     .email-panel-body textarea {
         min-height: 200px;
+    }
+
+    .footer-top {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 16px;
+        padding: 24px 20px;
+        font-size: 14px;
+    }
+
+    .footer-top:hover {
+        color: var(--color-ice);
     }
 }
 

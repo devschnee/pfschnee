@@ -132,3 +132,19 @@ function updateActiveIndex() {
 window.addEventListener("scroll", updateActiveIndex, { passive: true });
 window.addEventListener("resize", updateActiveIndex);
 updateActiveIndex();
+
+const indexNav = document.getElementById("idx-nav");
+
+function updateIndexVisibility() {
+    const isMobile = window.matchMedia("(max-width: 900px)").matches;
+    const isAtTop = window.scrollY < 100;
+    const isAtBottom =
+        window.scrollY + window.innerHeight >=
+        document.documentElement.scrollHeight - 2;
+
+    indexNav.hidden = isAtTop || (isMobile && isAtBottom);
+}
+
+window.addEventListener("scroll", updateIndexVisibility, { passive: true });
+window.addEventListener("resize", updateIndexVisibility);
+updateIndexVisibility();
