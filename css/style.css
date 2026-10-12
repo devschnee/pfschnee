@@ -37,6 +37,14 @@ body {
     font-family: Arial, "Malgun Gothic", sans-serif;
 }
 
+body.email-scroll-locked {
+    position: fixed;
+    top: var(--email-page-offset);
+    left: 0;
+    right: 0;
+    overflow: hidden;
+}
+
 /* 링크 기본 설정 */
 a {
     color: inherit;

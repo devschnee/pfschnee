@@ -29,6 +29,7 @@ openButton.addEventListener("click", () => {
     toggleButton.ariaLabel = "minimize mail writing";
     // 패널 열기
     emailPanel.removeAttribute('hidden');
+    syncEmailScrollLock();
 
     // 턴스타일 렌더링
     const emailTurnstileDiv = document.getElementById('email-turnstile');
@@ -50,12 +51,14 @@ toggleButton.addEventListener("click", () => {
     const isMinimized = emailPanel.classList.toggle("minimized");
     emailPanel.querySelector(".email-panel-body").inert = isMinimized;
     toggleButton.ariaLabel = isMinimized ? "expand mail panel" : "minimize mail panel";
+    syncEmailScrollLock();
 });
 
 closeButton.addEventListener("click", () => {
     // 패널 닫기
     emailPanel.setAttribute('hidden', "");
-    openButton.focus();
+    syncEmailScrollLock();
+    openButton.focus({ preventScroll: true });
 });
 
 emailForm.addEventListener("submit", async (event) => {
@@ -167,3 +170,32 @@ function updateIndexVisibility() {
 window.addEventListener("scroll", updateIndexVisibility, { passive: true });
 window.addEventListener("resize", updateIndexVisibility);
 updateIndexVisibility();
+
+let emailBackgroundLocked = false;
+let emailPageScrollY = 0;
+
+function syncEmailScrollLock() {
+    const shouldLock =
+        window.matchMedia("(max-width: 900px)").matches &&
+        !emailPanel.hidden &&
+        !emailPanel.classList.contains("minimized");
+
+    if (shouldLock && !emailBackgroundLocked) {
+        emailPageScrollY = window.scrollY;
+        document.body.style.setProperty(
+            "--email-page-offset", `${-emailPageScrollY}px`
+        );
+        document.body.classList.add("email-scroll-locked");
+        emailBackgroundLocked = true;
+    } else if (!shouldLock && emailBackgroundLocked) {
+        document.body.classList.remove("email-scroll-locked");
+        document.body.style.removeProperty("--email-page-offset");
+        emailBackgroundLocked = false;
+        window.scrollTo({ top: emailPageScrollY, behavior: "instant" });
+    }
+
+    updateEmailViewport();
+}
+
+window.addEventListener("resize", syncEmailScrollLock);
+syncEmailScrollLock();
