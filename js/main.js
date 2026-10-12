@@ -100,6 +100,25 @@ const sectionLinks = document.querySelectorAll(
     '.index-nav a[href^="#"]:not([href="#top"])'
 );
 
+const emailViewport = window.visualViewport;
+
+function updateEmailViewport() {
+    const height = emailViewport?.height ?? window.innerHeight;
+    const offsetTop = emailViewport?.offsetTop ?? 0;
+    const bottomGap = Math.max(
+        0, window.innerHeight - height - offsetTop
+    );
+
+    emailPanel.style.setProperty("--email-visible-height", `${height}px`);
+    emailPanel.style.setProperty("--email-bottom-gap", `${bottomGap}px`);
+}
+
+emailViewport?.addEventListener("resize", updateEmailViewport);
+emailViewport?.addEventListener("scroll", updateEmailViewport);
+window.addEventListener("resize", updateEmailViewport);
+updateEmailViewport();
+
+
 function updateActiveIndex() {
     let activeHref = "";
 

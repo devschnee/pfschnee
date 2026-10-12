@@ -639,6 +639,10 @@ footer {
         filter 350ms cubic-bezier(0.22, 1, 0.36, 1),
         display 350ms allow-discrete;
     box-shadow: 0 12px 32px rgba(16, 24, 32, 0.16);
+    display: flex;
+    flex-direction: column;
+    max-height: calc(var(--email-visible-height, 100dvh) - 32px);
+    overflow: hidden;
 }
 
 .email-panel[hidden] {
@@ -673,6 +677,7 @@ footer {
     gap: 8px;
     margin-bottom: 15px;
     padding-bottom: 10px;
+    flex-shrink: 0;
     border-bottom: 1px solid var(--color-dark);
 }
 
@@ -728,6 +733,7 @@ footer {
     grid-template-rows: 1fr;
     /*내용 펼쳐진 높이 1f 접힌 높이 0fr*/
     transition: grid-template-rows 500ms cubic-bezier(0.42, 1, 0.36, 1);
+    min-height: 0;
 }
 
 .email-panel.minimized .email-panel-body {
@@ -736,7 +742,9 @@ footer {
 
 .email-panel-content {
     min-height: 0;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior-y: contain;
 }
 
 .email-panel-body form {
@@ -985,6 +993,11 @@ footer {
         max-width: calc(100% - 32px);
         border-top-left-radius: 8px;
         box-shadow: 4px 4px 4px 1px var(--color-dark);
+        left: 16px;
+        right: 16px;
+        bottom: calc(16px + var(--email-bottom-gap, 0px));
+        min-width: 0;
+        max-width: none;
     }
 
     .email-panel.minimized {
