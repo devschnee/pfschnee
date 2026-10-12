@@ -5,6 +5,7 @@ const emailPanel = document.getElementById('email-panel');
 const toggleButton = document.getElementById('email-toggle');
 const emailForm = document.querySelector("#email-form");
 const sendButton = document.getElementById('email-send');
+let turnstileWidgetId;
 
 openButton.addEventListener("click", () => {
     emailPanel.classList.remove("minimized");
@@ -12,6 +13,22 @@ openButton.addEventListener("click", () => {
     toggleButton.ariaLabel = "minimize mail writing";
     // 패널 열기
     emailPanel.removeAttribute('hidden');
+
+    // 턴스타일 렌더링
+    const emailTurnstileDiv = document.getElementById('email-turnstile');
+    if (!turnstileWidgetId && emailTurnstileDiv) {
+        turnstileWidgetId = turnstile.render('#email-turnstile', {
+            sitekey: '0x4AAAAAAFUAD61yYwf4SIxE',
+            callback: function (token) {
+                console.log('CAPTCHA 통과됨:', token);
+            },
+            'expired-callback': function () {
+                console.error('Turnstile 오류 코드:', errorCode);
+                console.log('CAPTCHA 만료됨');
+                turnstile.reset('#email-turnstile');
+            }
+        });
+    }
 });
 
 toggleButton.addEventListener("click", () => {
@@ -59,6 +76,9 @@ emailForm.addEventListener("submit", async (event) => {
     }
     finally {
         sendButton.disabled = false;
+        if (window.turnstile && turnstileWidgetId !== undefined) {
+            turnstile.reset(turnstileWidgetId);
+        }
     }
 
 });

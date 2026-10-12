@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
     <title>Devschnee | Archive</title>
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/main.js" defer></script>
@@ -21,7 +22,12 @@
             <a href="#contact">CONTACT</a>
         </nav>
     </header>
-
+    <div class="index-nav" id="idx-nav" hidden>
+        <a href="#works">WORKS</a>
+        <a href="#about">ABOUT</a>
+        <a href="#contact">CONTACT</a>
+        <a href="#top">TOP ↑</a>
+    </div>
     <!-- body -->
     <main>
         <section class="hero" id="top" aria-labelledby="hero-title">
@@ -38,8 +44,8 @@
                 </p>
 
                 <a class="hero-link" href="#works">
-                    VIEW WORK
-                    <span aria-hidden="true">↗</span>
+                    VIEW WORKS
+                    <span aria-hidden="true">↓</span>
                 </a>
             </div>
 
@@ -89,6 +95,23 @@
                             <li>체크포인트 통과 기록을 기반으로 한 실시간 순위 시스템</li>
                             <li>일부 로비 UI</li>
                         </ul>
+                        <div class="project-links">
+                            <a href="https://www.youtube.com/watch?v=LPo_mc8xSBM&feature=youtu.be" target="_blank"
+                                rel="noopener noreferrer nofollow">
+                                <span>영상</span>
+                                <span>↗</span>
+                            </a>
+                            <a href="https://github.com/devschnee/MoonlitRush-Public" target="_blank"
+                                rel="noopener noreferrer">
+                                <span>GitHub</span>
+                                <span>↗</span>
+                            </a>
+                            <a href="https://app.notion.com/p/2e8eddbae78d80128221c47e6ab6edd1" target="_blank"
+                                rel="noopener noreferrer">
+                                <span>기술 문서</span>
+                                <span>↗</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </article>
@@ -122,6 +145,23 @@
                             <li>별 발광(Soft Glow) 효과를 낸 보물 Shader</li>
                             <li>인게임 UI와 옵션 팝업 일부</li>
                         </ul>
+                        <div class="project-links">
+                            <a href="https://www.youtube.com/watch?v=HQ4drY2X7RI" target="_blank"
+                                rel="noopener noreferrer nofollow">
+                                <span>영상</span>
+                                <span>↗</span>
+                            </a>
+                            <a href="https://github.com/devschnee/CocoDoogy-Public" target="_blank"
+                                rel="noopener noreferrer">
+                                <span>GitHub</span>
+                                <span>↗</span>
+                            </a>
+                            <a href="https://app.notion.com/p/2e8eddbae78d80128221c47e6ab6edd1" target="_blank"
+                                rel="noopener noreferrer">
+                                <span>기술 문서</span>
+                                <span>↗</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </article>
@@ -152,6 +192,23 @@
                             <li>PUN2로 동기화되는 퀵 이모트 시스템</li>
                             <li>커스터마이징 기능 일부</li>
                         </ul>
+                        <div class="project-links">
+                            <a href="https://www.youtube.com/watch?v=VlyXmGQhBaM" target="_blank"
+                                rel="noopener noreferrer nofollow">
+                                <span>영상</span>
+                                <span>↗</span>
+                            </a>
+                            <a href="https://github.com/devschnee/DontNudgeMe-Public" target="_blank"
+                                rel="noopener noreferrer">
+                                <span>GitHub</span>
+                                <span>↗</span>
+                            </a>
+                            <a href="https://app.notion.com/p/2e8eddbae78d80128221c47e6ab6edd1" target="_blank"
+                                rel="noopener noreferrer">
+                                <span>기술 문서</span>
+                                <span>↗</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </article>
@@ -183,6 +240,18 @@
                             <li>감성 비율(파이/막대)·토픽 분포·신뢰도 분포 차트 시각화</li>
                             <li>Steam 추천 여부 대비 정확도와 평균 신뢰도 검증</li>
                         </ul>
+                        <div class="project-links">
+                            <a href="https://github.com/devschnee/steam-review-analyzer" target="_blank"
+                                rel="noopener noreferrer">
+                                <span>GitHub</span>
+                                <span>↗</span>
+                            </a>
+                            <a href="https://drive.google.com/drive/folders/1UK_2tRX7ykY_wUrUOAs60yplgLZJw73w?usp=sharing"
+                                target="_blank" rel="noopener noreferrer">
+                                <span>ZIP 다운로드</span>
+                                <span>↗</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </article>
@@ -213,6 +282,13 @@
                             <li>변환 결과 미리보기</li>
                             <li>변환 이미지 ZIP 일괄 다운로드</li>
                         </ul>
+                        <div class="project-links">
+                            <a href="https://emoticon-resizer.snowforgeworks.com/" target="_blank"
+                                rel="noopener noreferrer">
+                                <span>리사이저 사이트</span>
+                                <span>↗</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </article>
@@ -238,7 +314,6 @@
                     rel="noopener noreferrer">GitHub</a>
             </div>
             <p>ⓒ 2026 DEV SCHNEE. ALL RIGHTS RESERVED.</p>
-            <a href="#top">BACK TO TOP</a>
         </div>
     </footer>
 
@@ -267,6 +342,7 @@
                     <label for="email-message">메일 내용</label>
                     <textarea id="email-message" name="message" rows="6" required placeholder="메일 내용"></textarea>
 
+                    <div id="email-turnstile"></div>
                     <button type="submit" id="email-send" aria-label="send mail">보내기</button>
                     <p id="email-status" aria-live="polite"></p>
                 </form>
